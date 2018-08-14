@@ -9,3 +9,5 @@
      folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="<?php echo base_url('assets/back/'); ?>dist/css/skins/_all-skins.min.css">
 <!-- Google Font -->
+<!-- DataTables -->
+  <link rel="stylesheet" href="<?php echo base_url('assets/back/'); ?>bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">

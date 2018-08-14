@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>B2C | Giriş</title>
+    <link href="<?php echo base_url(''); ?>assets/front/image/favicon.ico" rel="icon" />
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -29,7 +30,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">Idarəetmə Panelinə Giriş</p>
 
-
+  <p><?php echo $this->session->flashdata('condition'); ?></p>
     <form action="<?php echo base_url('manage/log_in'); ?>" method="post">
       <div class="form-group has-feedback">
         <input type="email" name="Email" class="form-control" placeholder="Email">

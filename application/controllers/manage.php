@@ -27,9 +27,16 @@ public function log_in()
 //part filter session
 if ($kontrol) {
      $this->session->set_userdata('login',true);
+     $this->session->set_userdata('info',$kontrol);
+     $data = array('LastLog'=>date('d-m-Y H:i:s'));
+     $this->dtbs->timeupdate($kontrol->Id,$data);
   redirect('manage/main');
 }else{
-
+     $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+                E-poçt və ya şifrə səhvdir.
+              </div>');
   redirect('manage');
 }
  }
@@ -46,5 +53,13 @@ if ($kontrol) {
 
  }
 
+ //Login end
+ //Settings Start
+ public function generalSettings()
+ {
+   $result =$this->dtbs->lists('sitesettings');
+   $data['info'] =$result;
+    $this->load->view('back/settings/main',$data);
+ }
 }
 ?>
