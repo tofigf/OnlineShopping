@@ -15,6 +15,7 @@
      <div class="row">
        <div class="col-xs-12">
          <div class="box">
+           <?php echo $this->session->flashdata('condition'); ?>
            <div class="box-header">
              <h3 class="box-title"> Site Umumi Ayarlarin siyahisi</h3>
            </div>
@@ -28,6 +29,8 @@
                  <th>Site Url</th>
                  <th>Site Phone</th>
                  <th>Site Adress</th>
+                  <th>Edit Delete</th>
+
                </tr>
                </thead>
                <tbody>
@@ -38,6 +41,7 @@
                  <td><?php echo $info['siteUrl']; ?></td>
                  <td><?php echo $info['sitePhone']; ?></td>
                   <td><?php echo $info['siteAdress']; ?></td>
+                  <td><a href="<?php echo base_url('manage/rowEdit/'.$info['Id'].''); ?>" class="btn btn-primary">Edit</a> </td>
 
                </tr>
              <?php } ?>

@@ -10,4 +10,5 @@ $(document).ready(function () {
     'info'        : true,
     'autoWidth'   : false
   })
+  CKEDITOR.replace('editor1')
 });

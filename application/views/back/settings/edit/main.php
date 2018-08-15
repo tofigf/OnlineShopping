@@ -8,8 +8,8 @@
 <?php $this->load->view('back/include/header'); ?>
 <?php $this->load->view('back/include/sidebar'); ?>
   <div class="content-wrapper">
-<?php $this->load->view('back/breadcrumb'); ?>
-  <?php $this->load->view('back/main_content'); ?>
+<?php $this->load->view('back/settings/edit/breadcrumb'); ?>
+  <?php $this->load->view('back/settings/edit/main_content'); ?>
   </div>
   <?php $this->load->view('back/include/footer'); ?>
 </div>

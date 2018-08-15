@@ -57,9 +57,48 @@ if ($kontrol) {
  //Settings Start
  public function generalSettings()
  {
-   $result =$this->dtbs->lists('sitesettings');
+   $result =$this->dtbs->listsModel('sitesettings');
    $data['info'] =$result;
     $this->load->view('back/settings/main',$data);
+ }
+ // datatable da edit isleri
+ public function rowEdit($id)
+ {
+   $result =$this->dtbs->checkModel($id,'sitesettings');
+   $data['info'] =$result;
+     $this->load->view('back/settings/edit/main',$data);
+ }
+//deyislik etmek button
+ public function edit()
+ {
+    $data =array(
+   'Id' => $id = $this->input->post('Id'),
+   'siteTitle' => $title = $this->input->post('siteTitle'),
+   'siteUrl' => $url = $this->input->post('siteUrl'),
+   'sitePhone' => $phone = $this->input->post('sitePhone'),
+   'siteAdress' => $adress = $this->input->post('siteAdress'),
+   'siteDesc' =>$desc = $this->input->post('siteDesc'),
+    'siteKeyw' =>$keyw = $this->input->post('siteKeyw'),
+     'siteInfo' =>$info = $this->input->post('siteInfo'),
+     'siteMail' =>$info = $this->input->post('siteMail')
+ );
+ $result = $this->dtbs->editModel($data,$id,'Id','sitesettings');
+
+ if ($result) {
+   $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+              Deyisdirildi
+            </div>');
+            redirect('manage/generalsettings');
+ }else {
+   $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+            Deyisilik alinmadi
+            </div>');
+  redirect('manage');
+ }
  }
 }
 ?>

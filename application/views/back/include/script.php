@@ -12,4 +12,6 @@
 <script src="<?php echo base_url('assets/back/'); ?>bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url('assets/back/'); ?>dist/js/demo.js"></script>
+<!-- CK Editor -->
+<script src="<?php echo base_url('assets/back/'); ?>bower_components/ckeditor/ckeditor.js"></script>
 <script src="<?php echo base_url('assets/back/'); ?>dist/js/custom.js"></script>
