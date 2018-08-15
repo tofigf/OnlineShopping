@@ -61,14 +61,17 @@ if ($kontrol) {
    $data['info'] =$result;
     $this->load->view('back/settings/main',$data);
  }
+
  // datatable da edit isleri
+ //Get
  public function rowEdit($id)
  {
    $result =$this->dtbs->checkModel($id,'sitesettings');
    $data['info'] =$result;
      $this->load->view('back/settings/edit/main',$data);
  }
-//deyislik etmek button
+//deyislik etmek button post
+//Post
  public function edit()
  {
     $data =array(
@@ -100,5 +103,71 @@ if ($kontrol) {
   redirect('manage');
  }
  }
+// Setting End
+// Cargo Start
+public function cargoLists()
+{
+  $result =$this->dtbs->listsModel('cargo');
+  $data['info'] = $result;
+  $this->load->view('back/cargo/main',$data);
+}
+//Get
+public function cargoAdd()
+{
+    $this->load->view('back/cargo/add/main');
+}
+//post
+public function cargoAdding(){
+  $config['upload_path']   =FCPATH. 'assets/front/image/cargo';
+                $config['allowed_types']        = 'gif|jpg|png';
+                $config['encrypt_name'] =TRUE;
+
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('img'))
+                           {
+                                $img =$this->upload->data();
+                                $imgPath =$img['file_name'];
+                                $imgSave ='assets/front/image/cargo'.$imgPath.'';
+                                $imgtmb ='assets/front/image/cargo/tmb'.$imgPath.'';
+                                $imgmini ='assets/front/image/cargo/mini'.$imgPath.'';
+                                //////////////////////////////////////////////////////
+                                $config['image_library'] = 'gd2';
+                                $config['source_image'] = 'assets/front/image/cargo'.$imgPath.'';
+                                $config['new_image'] = 'assets/front/image/cargo/tmb'.$imgPath.'';
+                                $config['create_thumb'] =false;
+                                $config['maintain_ratio'] =false;
+                                $config['quality'] = '60%';
+                                $config['width'] ='310';
+                                  $config['height'] ='170';
+
+                                  $this->load->library('image_lib',$config);
+                                  $this->image_lib->initailize($config);
+                                    $this->image_lib->resize();
+                                      $this->image_lib->clear();
+
+                                      ///////////////////
+                                      $config['image_library'] = 'gd2';
+                                      $config['source_image'] = 'assets/front/image/cargo'.$imgPath.'';
+                                      $config['new_image'] = 'assets/front/image/cargo/mini'.$imgPath.'';
+                                      $config['create_thumb'] =false;
+                                      $config['maintain_ratio'] =false;
+                                      $config['quality'] = '60%';
+                                      $config['width'] ='310';
+                                        $config['height'] ='170';
+
+                                        $this->load->library('image_lib',$config);
+                                        $this->image_lib->initailize($config);
+                                          $this->image_lib->resize();
+                                            $this->image_lib->clear();
+
+                           }
+                           else
+                           {
+                                   $data = array('upload_data' => $this->upload->data());
+
+                                   $this->load->view('upload_success', $data);
+                           }
+}
+
 }
 ?>
