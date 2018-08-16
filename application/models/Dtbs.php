@@ -34,4 +34,10 @@ public function editModel($data =array(),$id,$where,$from)
   $result = $this->db->where($where,$id)->update($from,$data);
   return $result;
 }
+
+public function addModel($from,$data =array())
+{
+  $result =$this->db->insert($from,$data);
+  return $result;
+}
 }

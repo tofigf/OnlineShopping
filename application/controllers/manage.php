@@ -118,8 +118,8 @@ public function cargoAdd()
 }
 //post
 public function cargoAdding(){
-  $config['upload_path']   =FCPATH. 'assets/front/image/cargo';
-                $config['allowed_types']        = 'gif|jpg|png';
+                $config['upload_path']  = FCPATH.'assets/front/image/cargo';
+                $config['allowed_types'] = 'gif|jpg|jpeg|png';
                 $config['encrypt_name'] =TRUE;
 
                 $this->load->library('upload', $config);
@@ -127,45 +127,74 @@ public function cargoAdding(){
                            {
                                 $img =$this->upload->data();
                                 $imgPath =$img['file_name'];
-                                $imgSave ='assets/front/image/cargo'.$imgPath.'';
-                                $imgtmb ='assets/front/image/cargo/tmb'.$imgPath.'';
-                                $imgmini ='assets/front/image/cargo/mini'.$imgPath.'';
+                                $imgSave ='assets/front/image/cargo/'.$imgPath.'';
+                                $imgtmb ='assets/front/image/cargo/tmb/'.$imgPath.'';
+                                $imgmini ='assets/front/image/cargo/mini/'.$imgPath.'';
+
                                 //////////////////////////////////////////////////////
                                 $config['image_library'] = 'gd2';
-                                $config['source_image'] = 'assets/front/image/cargo'.$imgPath.'';
-                                $config['new_image'] = 'assets/front/image/cargo/tmb'.$imgPath.'';
-                                $config['create_thumb'] =false;
-                                $config['maintain_ratio'] =false;
+                                $config['source_image'] = 'assets/front/image/cargo/'.$imgPath.'';
+                                $config['new_image'] = 'assets/front/image/cargo/tmb/'.$imgPath.'';
+                                $config['create_thumb'] = false;
+                                $config['maintain_ratio'] = false;
                                 $config['quality'] = '60%';
                                 $config['width'] ='310';
                                   $config['height'] ='170';
 
                                   $this->load->library('image_lib',$config);
-                                  $this->image_lib->initailize($config);
+                                   $this->image_lib->initialize($config);
                                     $this->image_lib->resize();
                                       $this->image_lib->clear();
 
                                       ///////////////////
-                                      $config['image_library'] = 'gd2';
-                                      $config['source_image'] = 'assets/front/image/cargo'.$imgPath.'';
-                                      $config['new_image'] = 'assets/front/image/cargo/mini'.$imgPath.'';
-                                      $config['create_thumb'] =false;
-                                      $config['maintain_ratio'] =false;
-                                      $config['quality'] = '60%';
-                                      $config['width'] ='310';
-                                        $config['height'] ='170';
+                                      $config1['image_library'] = 'gd2';
+                                      $config1['source_image'] = 'assets/front/image/cargo/'.$imgPath.'';
+                                      $config1['new_image'] = 'assets/front/image/cargo/mini/'.$imgPath.'';
+                                      $config1['create_thumb'] =false;
+                                      $config1['maintain_ratio'] =false;
+                                      $config1['quality'] = '60%';
+                                      $config1['width'] ='110';
+                                      $config1['height'] ='75';
 
-                                        $this->load->library('image_lib',$config);
-                                        $this->image_lib->initailize($config);
+                                        $this->load->library('image_lib',$config1);
+                                        $this->image_lib->initialize($config1);
                                           $this->image_lib->resize();
                                             $this->image_lib->clear();
+
+                                            $data =array(
+                                              'title' =>  $title = $this->input->post('title'),
+                                              'sef'  => seflink($title),
+                                              'status' => 1,
+                                              'img' => $imgSave,
+                                              'tmb' => $imgtmb,
+                                              'mini' => $imgmini
+                                            );
+                                            $result =$this->dtbs->addModel('cargo',$data);
+                                            if ($result) {
+                                              $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+                                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                         <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+                                                         Əlavə Etdiniz.
+                                                       </div>');
+                                                       redirect('manage/cargoLists');
+                                            }else {
+                                              $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                         <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+                                                    Əlavə Olunmadı.
+                                                       </div>');
+                                             redirect('manage/cargoLists');
+                                            }
 
                            }
                            else
                            {
-                                   $data = array('upload_data' => $this->upload->data());
-
-                                   $this->load->view('upload_success', $data);
+                             $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+                                   Əlavə etmek mumkun olmadi
+                                      </div>');
+                            redirect('manage/cargoLists');
                            }
 }
 

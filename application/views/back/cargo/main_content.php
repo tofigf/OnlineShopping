@@ -29,8 +29,8 @@
                  <td>sekil</td>
                  <td>firma</td>
                  <td>veziyyeti</td>
-                  <td><a href="<?php echo base_url('manage/cargoEdit/'.$info['Id'].''); ?>" class="btn btn-siteInfo">Dəyişdir</a> </td>
-                  <td><a href="<?php echo base_url('manage/cargoDelete/'.$info['Id'].''); ?>" class="btn btn-warning">Sil</a> </td>
+                  <td><a href="<?php echo base_url('manage/cargoEdit/'.$info['Id'].''); ?>" class="btn btn-info">Dəyişdir</a>
+                  <a href="<?php echo base_url('manage/cargoDelete/'.$info['Id'].''); ?>" class="btn btn-warning">Sil</a> </td>
 
                </tr>
              <?php } ?>
