@@ -176,10 +176,18 @@
           <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
         </ul>
       </li>
-      <li class="header">LABELS</li>
-      <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-      <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-      <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+      <li class="header">Islemler</li>
+      <li><a href="<?php echo base_url('manage/logout'); ?>"><i class="fa fa-circle-o text-red"></i>
+
+        <span><button class="btn btn-warning " type="button">Cixis</button></span></a></li>
+      <li><a href="<?php echo base_url('manage/deletework'); ?>">
+        <?php if($this->session->userdata('delete')){  ?>
+        <i class="fa fa-circle-o text-success"></i>
+        <span><button type="button" class="btn btn-success">Silme funksiyasi aciqdir</button>
+         <?php } else{?>
+    <i class="fa fa-circle-o text-danger"></i> <span><button type="button" class="btn btn-danger">Silme funksiyasi baglidir</button>
+<?php } ?>
+        </span></a></li>
     </ul>
   </section>
   <!-- /.sidebar -->

@@ -15,29 +15,34 @@ function timeupdate($Id,$data=array()){
   return $result;
 }
 
-public function listsModel($from)
+ function listsModel($from)
 {
     $result =$this->db->select('*')->from($from)
     ->order_by('Id','desc')->get()->result_array();
     return $result;
 }
 
-public function checkModel($id,$from)
+ function checkModel($id,$from)
 {
     $result =$this->db->select('*')->from($from)
     ->where('Id',$id)->get()->row_array();
     return $result;
 }
 
-public function editModel($data =array(),$id,$where,$from)
+ function editModel($data =array(),$id,$where,$from)
 {
   $result = $this->db->where($where,$id)->update($from,$data);
   return $result;
 }
 
-public function addModel($from,$data =array())
+ function addModel($from,$data =array())
 {
   $result =$this->db->insert($from,$data);
   return $result;
+}
+ function deleteModel($id,$where,$from)
+{
+    $result = $this->db->delete($from,array($where=>$id));
+    return $result;
 }
 }

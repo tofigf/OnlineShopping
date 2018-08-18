@@ -1,5 +1,15 @@
 
 $(document).ready(function () {
+  //bootstrapToggle
+$('.toggle_check').bootstrapToggle();
+$('.toggle_check').change(function(){
+  var status =$(this).prop('checked');
+  var Id =$(this).attr('dataId');
+  var base_url =$(this).attr('dataUrl');
+  $.post(base_url, {Id:Id,status:status},function(response){});
+});
+
+//datatable
   $('.sidebar-menu').tree()
   $('#example1').DataTable()
   $('#example2').DataTable({
@@ -10,5 +20,6 @@ $(document).ready(function () {
     'info'        : true,
     'autoWidth'   : false
   })
-  CKEDITOR.replace('editor1')
+  //editor textarea
+  CKEDITOR.replace('editor1');
 });

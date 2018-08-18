@@ -52,8 +52,19 @@ if ($kontrol) {
      redirect('manage');
 
  }
-
  //Login end
+ public function deleteWork()
+ {
+    $session = $this->session->userdata('delete');
+    if ($session) {
+    $this->session->unset_userdata('delete');
+    redirect($_SERVER['HTTP_REFERER']);
+  }else{
+    $this->session->set_userdata('delete',true);
+      redirect($_SERVER['HTTP_REFERER']);
+  }
+
+ }
  //Settings Start
  public function generalSettings()
  {
@@ -198,5 +209,176 @@ public function cargoAdding(){
                            }
 }
 
+public function cargoSet()
+{
+    $id = $this->input->post('Id');
+    $status =($this->input->post('status') == "true") ? 1 :0;
+    $this->db->where('Id',$id)->update('cargo',array('status'=>$status));
+
+}
+//Get Cargoedit
+public function cargoEdit($id)
+{
+  $result =$this->dtbs->checkModel($id,'cargo');
+  $data['info'] =$result;
+    $this->load->view('back/cargo/edit/main',$data);
+}
+//Post CargoEdit
+public function cargoEditing()
+{
+  if (strlen($_FILES['img']['name'])> 0) {
+    $config['upload_path']  = FCPATH.'assets/front/image/cargo';
+    $config['allowed_types'] = 'gif|jpg|jpeg|png';
+    $config['encrypt_name'] =TRUE;
+    $this->load->library('upload', $config);
+    if ($this->upload->do_upload('img'))
+               {
+                    $img =$this->upload->data();
+                    $imgPath =$img['file_name'];
+                    $imgSave ='assets/front/image/cargo/'.$imgPath.'';
+                    $imgtmb ='assets/front/image/cargo/tmb/'.$imgPath.'';
+                    $imgmini ='assets/front/image/cargo/mini/'.$imgPath.'';
+
+                    //////////////////////////////////////////////////////
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = 'assets/front/image/cargo/'.$imgPath.'';
+                    $config['new_image'] = 'assets/front/image/cargo/tmb/'.$imgPath.'';
+                    $config['create_thumb'] = false;
+                    $config['maintain_ratio'] = false;
+                    $config['quality'] = '60%';
+                    $config['width'] ='310';
+                      $config['height'] ='170';
+
+                      $this->load->library('image_lib',$config);
+                       $this->image_lib->initialize($config);
+                        $this->image_lib->resize();
+                          $this->image_lib->clear();
+
+                          ///////////////////
+                          $config1['image_library'] = 'gd2';
+                          $config1['source_image'] = 'assets/front/image/cargo/'.$imgPath.'';
+                          $config1['new_image'] = 'assets/front/image/cargo/mini/'.$imgPath.'';
+                          $config1['create_thumb'] =false;
+                          $config1['maintain_ratio'] =false;
+                          $config1['quality'] = '60%';
+                          $config1['width'] ='110';
+                          $config1['height'] ='75';
+
+                            $this->load->library('image_lib',$config1);
+                            $this->image_lib->initialize($config1);
+                              $this->image_lib->resize();
+                                $this->image_lib->clear();
+
+                                $data =array(
+                                  'title' =>  $title = $this->input->post('title'),
+                                  'Id' =>  $id = $this->input->post('Id'),
+                                 'status' =>  $status = $this->input->post('status'),
+                                  'sef'  => seflink($title),
+                                  'img' => $imgSave,
+                                  'tmb' => $imgtmb,
+                                  'mini' => $imgmini
+                                );
+                $yol = cargoImg($id);
+                $yol2 =cargoTmb($id);
+                $yol3 =cargoMini($id);
+                unlink($yol);
+                unlink($yol1);
+                unlink($yol2);
+                $result =$this->dtbs->editModel($data,$id,'Id','cargo');
+                if ($result) {
+                  $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                             <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+                            Dəyişilik Etdiniz.
+                           </div>');
+                           redirect('manage/cargoLists');
+
+              }else {
+                  $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                             <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+                        Dəyişilik Olunmadı.
+                           </div>');
+                 redirect('manage/cargoLists');
+                }
+              }
+         else {
+    $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+               <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+          Şəkili Dəyişdirmək alınmadı.
+             </div>');
+   redirect('manage/cargoLists');
+ }
+}
+ else{
+   $data =array(
+     'Id' =>  $id = $this->input->post('Id'),
+    'status' =>  $status = $this->input->post('status'),
+    'title' =>  $title = $this->input->post('title'),
+    'sef'  =>seflink($title)
+
+   );
+ $result =$this->dtbs->editModel($data,$id,'Id','cargo');
+
+ if ($result) {
+   $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+              Əlavə Etdiniz.
+            </div>');
+            redirect('manage/cargoLists');
+ }else {
+   $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+         Əlavə Olunmadı.
+            </div>');
+  redirect('manage/cargoLists');
+ }
+
+ }
+
+
+}
+
+
+ public function cargoDelete($id,$where,$from)
+{
+  $run =$this->session->userdata('delete');
+  if ($run) {
+    $yol = cargoImg($id);
+    $yol2 =cargoTmb($id);
+    $yol3 =cargoMini($id);
+    unlink($yol);
+    unlink($yol1);
+    unlink($yol2);
+    $delete =$this->dtbs->deleteModel($id,$where,$from);
+
+    if ($delete) {
+      $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                 <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+                 Sildiniz
+               </div>');
+               redirect('manage/cargoLists');
+    }else {
+      $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                 <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+            Sile Bilmediniiz
+               </div>');
+     redirect('manage/cargoLists');
+    }
+  }else{
+    $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+               <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+          Silmək işlərini etmək üçün <br>Silmə funksiyasi açmalısınız...!!!
+             </div>');
+   redirect('manage/cargoLists');
+
+  }
+}
 }
 ?>

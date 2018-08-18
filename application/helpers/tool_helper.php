@@ -110,3 +110,22 @@ function tarih($tarih){
   $bitir = $gun.' '.$turkceay.' '.$yil;
   return $bitir;
 }
+
+ function cargoImg($id)
+{
+  $ci =& get_instance();
+  $result = $ci->db->select('img')->from('cargo')->where('Id',$id)->get()->row();
+  return $result->img;
+}
+function cargoTmb($id)
+{
+ $ci =& get_instance();
+ $result = $ci->db->select('tmb')->from('cargo')->where('Id',$id)->get()->row();
+ return $result->tmb;
+}
+function cargoMini($id)
+{
+ $ci =& get_instance();
+ $result = $ci->db->select('mini')->from('cargo')->where('Id',$id)->get()->row();
+ return $result->mini;
+}
