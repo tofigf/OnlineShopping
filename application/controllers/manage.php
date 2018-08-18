@@ -115,7 +115,7 @@ if ($kontrol) {
  }
  }
 // Setting End
-// Cargo Start
+// Cargo List Start
 public function cargoLists()
 {
   $result =$this->dtbs->listsModel('cargo');
@@ -342,7 +342,7 @@ public function cargoEditing()
 
 }
 
-
+//silmek funksiyasi evvelce sekili silir
  public function cargoDelete($id,$where,$from)
 {
   $run =$this->session->userdata('delete');
@@ -354,7 +354,6 @@ public function cargoEditing()
     unlink($yol1);
     unlink($yol2);
     $delete =$this->dtbs->deleteModel($id,$where,$from);
-
     if ($delete) {
       $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -380,5 +379,78 @@ public function cargoEditing()
 
   }
 }
+//Cargo List  End
+//Cargo Desi Start
+//view ya melumatlari gondermek
+public function cargoDesi()
+{
+  $result =$this->dtbs->listsModel('cargodesi');
+  $data['info']=$result;
+  $this->load->view('back/cargodesi/main',$data);
+
+}
+//Get
+ public function cargodesiAdd()
+ {
+     $this->load->view('back/cargodesi/add/main');
+ }
+ //Post
+public function cargoDesiAdding()
+{
+    $data= array(
+      'cargoId' =>$cargoId = $this->input->post('cargoId'),
+      'tutar' =>$tutar = $this->input->post('tutar')
+    );
+    $result = $this->dtbs->addModel('cargodesi',$data);
+    if ($result) {
+      $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                 <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+                 Elave Etdiniz
+               </div>');
+               redirect('manage/cargodesi');
+    }else {
+      $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                 <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+              Elave ede bilmediniz
+               </div>');
+     redirect('manage/cargodesi');
+    }
+}
+//Get Edit
+public function cargoDesiEdit($id)
+{
+  $result =$this->dtbs->checkModel($id, 'cargodesi');
+  $data['info'] =$result;
+  $this->load->view('back/cargodesi/edit/main',$data);
+}
+
+//Post Edit
+public function cargoDesiEditing()
+{
+    $data =array(
+    'Id'      =>$id =$this->input->post('Id'),
+    'cargoId' =>$cargoId= $this->input->post('cargoId'),
+    'tutar'   =>$tutar =$this->input->post('tutar')
+    );
+    $result =$this->dtbs->editModel($data,$id,'Id','cargodesi');
+    if ($result) {
+      $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                 <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+                Deyisilik Etdiniz
+               </div>');
+               redirect('manage/cargodesi');
+    }else {
+      $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                 <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+            Deyisilik ede bilmediniz
+               </div>');
+     redirect('manage/cargodesi');
+    }
+}
+
 }
 ?>

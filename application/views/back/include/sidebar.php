@@ -16,7 +16,7 @@
     </div>
 <br>
     <ul class="sidebar-menu" data-widget="tree">
-      <li class="header text-center" style="color:#fff">Idarəetmə Paneli</li>
+      <li class="header text-center" style="color:#fff">IdarəEtmə Paneli</li>
       <li><a href="<?php echo base_url('manage'); ?>"><i class="fa fa-dashboard"></i> <span>Ana Səhifə</span></a></li>
 
 
@@ -44,7 +44,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url('manage/cargolists') ?>"><i class="fa fa-circle-o"></i> Kargo Listesi</a></li>
-                  <li><a href="<?php echo base_url('manage/cargodesc') ?>"><i class="fa fa-circle-o"></i> Kargo Desc</a></li>
+                  <li><a href="<?php echo base_url('manage/cargodesi') ?>"><i class="fa fa-circle-o"></i> Kargo Desi</a></li>
 
               </ul>
             </li>

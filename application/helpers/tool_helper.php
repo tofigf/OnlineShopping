@@ -129,3 +129,19 @@ function cargoMini($id)
  $result = $ci->db->select('mini')->from('cargo')->where('Id',$id)->get()->row();
  return $result->mini;
 }
+
+function cargoDesiCheck(){
+  $ci =& get_instance();
+  $result =$ci->db->select('*')->from('cargo')->where('status','1')->order_by('Id','asc')
+  ->get()->result_array();
+  return $result;
+}
+function cargoJoinTable(){
+  $ci=& get_instance();
+  $result =$ci->db->select('*')->from('cargo')
+  ->join('cargodesi','cargodesi.cargoId =cargo.Id','inner')
+  ->order_by('cargodesi.Id','desc')->get()->result_array();
+
+  return $result;
+
+}
