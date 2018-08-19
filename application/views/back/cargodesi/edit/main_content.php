@@ -10,11 +10,11 @@
            <form class="form-horizontal" action="<?php echo base_url('manage/cargoDesiEditing'); ?>" method="post">
              <div class="box-body">
                <div class="form-group">
-                 <label for="inputEmail3" class="col-sm-2 control-label">Kargo Basliq</label>
+                 <label for="inputEmail3" class="col-sm-2 control-label">Kargo Adi</label>
                  <div class="col-sm-4">
-                <select class="form-control">
+                <select class="form-control" name="cargoId">
                        <?php $cargo=cargoDesiCheck(); foreach ($cargo as $cargo) {
-                           if ($cargo['Id'] == $info['cargoId']) { ?>
+                           if ($cargo['Id'] ==  $info['cargoId']) { ?>
                           <option selected value="<?php echo $cargo['Id']; ?>"><?php echo $cargo['title']; ?></option>
                         <?php }else{ ?>
                           <option  value="<?php echo $cargo['Id']; ?>"><?php echo $cargo['title']; ?></option>

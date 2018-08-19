@@ -139,8 +139,8 @@ function cargoDesiCheck(){
 function cargoJoinTable(){
   $ci=& get_instance();
   $result =$ci->db->select('*')->from('cargo')
-  ->join('cargodesi','cargodesi.cargoId =cargo.Id','inner')
-  ->order_by('cargodesi.Id','desc')->get()->result_array();
+  ->join('cargodesi','cargodesi.cargoId =  cargo.Id','inner')
+  ->order_by('cargodesi.Id','desc')->get()->result_array(); 
 
   return $result;
 

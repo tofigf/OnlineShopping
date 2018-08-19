@@ -26,7 +26,7 @@
                <tr>
                  <td><?php echo $count ++; ?></td>
                  <td><?php  echo $info['title']; ?></td>
-                 <td><?php  echo $info['tutar']; ?></td>
+                 <td><?php  echo $info['tutar']; ?>Azn</td>
                   <td><a href="<?php echo base_url('manage/cargodesiEdit/'.$info['Id'].''); ?>" class="btn btn-info">Dəyişdir</a>
                   <a href="<?php echo base_url('manage/cargodesiDelete/'.$info['Id'].'/Id/cargodesi'); ?>" class="btn btn-warning">Sil</a> </td>
 
