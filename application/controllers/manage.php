@@ -797,5 +797,49 @@ if ($result) {
  redirect('manage/secretContract');
 }
 }
+#Gizlilik End
+#Sale Start
+//send view info
+public function salesContract()
+{
+    $result =$this->dtbs->listsModel('sales');
+    $data['info'] =$result;
+    $this->load->view('back/sale/main',$data);
+}
+//Sale Edit Get:
+public function salesedit($id)
+{
+    $result =$this->dtbs->checkModel($id,'sales');
+    $data['info'] = $result;
+    $this->load->view('back/sale/edit/main',$data);
+
+}
+//Sale Post:
+public function salesEditing()
+{
+  $data =array(
+    'Id' =>$id =$this->input->post('Id'),
+    'title' =>$title=$this->input->post('title'),
+    'sef' =>seflink($title),
+    'description' =>$description =$this->input->post('description')
+  );
+$result =$this->dtbs->editModel($data,$id,'Id','sales');
+if ($result) {
+  $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+             <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+          Deyisdirildi
+           </div>');
+           redirect('manage/salesContract');
+}else {
+  $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+             <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+      Deyisilik alinmadi
+           </div>');
+ redirect('manage/salesContract');
+}
+
+}
 }
 ?>
