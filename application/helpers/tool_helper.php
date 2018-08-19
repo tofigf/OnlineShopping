@@ -129,6 +129,29 @@ function cargoMini($id)
  $result = $ci->db->select('mini')->from('cargo')->where('Id',$id)->get()->row();
  return $result->mini;
 }
+/////////////////////////////////
+///bank
+function bankImg($id)
+{
+ $ci =& get_instance();
+ $result = $ci->db->select('img')->from('bank')->where('Id',$id)->get()->row();
+ return $result->img;
+}
+function bankTmb($id)
+{
+$ci =& get_instance();
+$result = $ci->db->select('tmb')->from('bank')->where('Id',$id)->get()->row();
+return $result->tmb;
+}
+function bankMini($id)
+{
+$ci =& get_instance();
+$result = $ci->db->select('mini')->from('bank')->where('Id',$id)->get()->row();
+return $result->mini;
+}
+
+
+
 
 function cargoDesiCheck(){
   $ci =& get_instance();
@@ -140,7 +163,7 @@ function cargoJoinTable(){
   $ci=& get_instance();
   $result =$ci->db->select('*')->from('cargo')
   ->join('cargodesi','cargodesi.cargoId =  cargo.Id','inner')
-  ->order_by('cargodesi.Id','desc')->get()->result_array(); 
+  ->order_by('cargodesi.Id','desc')->get()->result_array();
 
   return $result;
 

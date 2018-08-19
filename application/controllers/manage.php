@@ -235,7 +235,7 @@ public function cargoEditing()
                {
                     $img =$this->upload->data();
                     $imgPath =$img['file_name'];
-                    $imgSave ='assets/front/image/cargo/'.$imgPath.'';
+                    $imgSave ='assets/front/image/cargo/'.$imgPath.'' ;
                     $imgtmb ='assets/front/image/cargo/tmb/'.$imgPath.'';
                     $imgmini ='assets/front/image/cargo/mini/'.$imgPath.'';
 
@@ -484,5 +484,275 @@ public function cargoDesiDelete($id,$where,$from)
  }
 }
 
+//cargoDesi end
+//Bank Start
+// Bank view melumatlari gondermek
+public function bankLists()
+{
+    $result =$this->dtbs->listsModel('bank');
+    $data['info'] =$result;
+ $this->load->view('back/bank/main',$data);
+}
+//Bank Get add
+public function bankAdd()
+{
+    $this->load->view('back/bank/add/main');
+}
+//Bank Post add
+public function bankAdding()
+{
+  $config['upload_path']  = FCPATH.'assets/front/image/bank';
+  $config['allowed_types'] = 'gif|jpg|jpeg|png';
+  $config['encrypt_name'] =TRUE;
+
+  $this->load->library('upload', $config);
+  if ($this->upload->do_upload('img'))
+             {
+                  $img =$this->upload->data();
+                  $imgPath =$img['file_name'];
+                  $imgSave ='assets/front/image/bank/'.$imgPath.'';
+                  $imgtmb ='assets/front/image/bank/tmb/'.$imgPath.'';
+                  $imgmini ='assets/front/image/bank/mini/'.$imgPath.'';
+
+                  //////////////////////////////////////////////////////
+                  $config['image_library'] = 'gd2';
+                  $config['source_image'] = 'assets/front/image/bank/'.$imgPath.'';
+                  $config['new_image'] = 'assets/front/image/bank/tmb/'.$imgPath.'';
+                  $config['create_thumb'] = false;
+                  $config['maintain_ratio'] = false;
+                  $config['quality'] = '60%';
+                  $config['width'] ='310';
+                    $config['height'] ='165';
+
+                    $this->load->library('image_lib',$config);
+                     $this->image_lib->initialize($config);
+                      $this->image_lib->resize();
+                        $this->image_lib->clear();
+
+                        ///////////////////
+                        $config1['image_library'] = 'gd2';
+                        $config1['source_image'] = 'assets/front/image/bank/'.$imgPath.'';
+                        $config1['new_image'] = 'assets/front/image/bank/mini/'.$imgPath.'';
+                        $config1['create_thumb'] =false;
+                        $config1['maintain_ratio'] =false;
+                        $config1['quality'] = '60%';
+                        $config1['width'] ='110';
+                        $config1['height'] ='75';
+
+                          $this->load->library('image_lib',$config1);
+                          $this->image_lib->initialize($config1);
+                            $this->image_lib->resize();
+                              $this->image_lib->clear();
+
+                              $data =array(
+                               'title' => $title= $this->input->post('title'),
+                               'sef'   =>seflink($title),
+                               'flial'  =>$flial = $this->input->post('flial'),
+                               'iban'   =>$iban =$this->input->post('iban'),
+                               'hesabno' =>$hesabno =$this->input->post('hesabno'),
+                               'status'  =>1,
+                               'img' =>$imgSave,
+                               'tmb' =>$imgtmb,
+                               'mini' =>$imgmini
+                              );
+                              $result =$this->dtbs->addModel('bank',$data);
+                              if ($result) {
+                                $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+                                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                           <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+                                           Əlavə Etdiniz
+                                         </div>');
+                                         redirect('manage/banklists');
+                              }else {
+                                $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                           <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+                                    Əlavə edə bilmədiniz
+                                         </div>');
+                               redirect('manage/banklists');
+                              }
+
+        }else{
+          # sekil yuklenemez xeta /bildirimi
+          $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                     <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+            Şəkil yükləmək alınmadı
+                   </div>');
+         redirect('manage/banklists');
+
+        }
+   }
+   public function bankSet()
+   {
+      $id =$this->input->post('Id');
+      $status =($this->input->post('status')== "true") ? 1 : 0;
+      $this->db->where('Id',$id)->update('bank',array('status'=>$status));
+   }
+   //Get
+public function bankEdit($id)
+{
+  $result=$this->dtbs->checkModel($id,'bank');
+  $data['info'] = $result;
+  $this->load->view('back/bank/edit/main',$data);
+
+}
+//Post
+public function bankEditing()
+{
+  if (strlen($_FILES['img']['name'])> 0) {
+    $config['upload_path']  = FCPATH.'assets/front/image/bank';
+    $config['allowed_types'] = 'gif|jpg|jpeg|png';
+    $config['encrypt_name'] =TRUE;
+    $this->load->library('upload', $config);
+    if ($this->upload->do_upload('img'))
+               {
+                    $img =$this->upload->data();
+                    $imgPath =$img['file_name'];
+                    $imgSave ='assets/front/image/bank/'.$imgPath.'';
+                    $imgtmb ='assets/front/image/bank/tmb/'.$imgPath.'';
+                    $imgmini ='assets/front/image/bank/mini/'.$imgPath.'';
+
+                    //////////////////////////////////////////////////////
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = 'assets/front/image/bank/'.$imgPath.'';
+                    $config['new_image'] = 'assets/front/image/bank/tmb/'.$imgPath.'';
+                    $config['create_thumb'] = false;
+                    $config['maintain_ratio'] = false;
+                    $config['quality'] = '60%';
+                    $config['width'] ='310';
+                      $config['height'] ='170';
+
+                      $this->load->library('image_lib',$config);
+                       $this->image_lib->initialize($config);
+                        $this->image_lib->resize();
+                          $this->image_lib->clear();
+
+                          ///////////////////
+                          $config1['image_library'] = 'gd2';
+                          $config1['source_image'] = 'assets/front/image/bank/'.$imgPath.'';
+                          $config1['new_image'] = 'assets/front/image/bank/mini/'.$imgPath.'';
+                          $config1['create_thumb'] =false;
+                          $config1['maintain_ratio'] =false;
+                          $config1['quality'] = '60%';
+                          $config1['width'] ='110';
+                          $config1['height'] ='75';
+
+                            $this->load->library('image_lib',$config1);
+                            $this->image_lib->initialize($config1);
+                              $this->image_lib->resize();
+                                $this->image_lib->clear();
+
+                                $data =array(
+                                  'title' =>  $title = $this->input->post('title'),
+                                  'Id' =>  $id = $this->input->post('Id'),
+                                 'status' =>  $status = $this->input->post('status'),
+                                  'sef'  => seflink($title),
+                                  'flial' =>$flial =$this->input->post('flial'),
+                                  'iban' =>$iban =$this->input->post('iban'),
+                                  'hesabno' =>$hesabno =$this->input->post('hebank'),
+                                  'img' => $imgSave,
+                                  'tmb' => $imgtmb,
+                                  'mini' => $imgmini
+                                );
+                $yol = bankImg($id);
+                $yol2 =bankTmb($id);
+                $yol3 =bankMini($id);
+                unlink($yol);
+                unlink($yol1);
+                unlink($yol2);
+                $result =$this->dtbs->editModel($data,$id,'Id','bank');
+                if ($result) {
+                  $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                             <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+                            Dəyişilik Etdiniz.
+                           </div>');
+                           redirect('manage/bankLists');
+
+              }else {
+                  $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                             <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+                        Dəyişilik Olunmadı.
+                           </div>');
+                 redirect('manage/bankLists');
+                }
+              }
+         else {
+    $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+               <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+          Şəkili Dəyişdirmək alınmadı.
+             </div>');
+   redirect('manage/bankLists');
+ }
+}
+ else{
+   $data =array(
+     'Id' =>  $id = $this->input->post('Id'),
+    'status' =>  $status = $this->input->post('status'),
+    'title' =>  $title = $this->input->post('title'),
+    'sef'  =>seflink($title),
+    'flial' =>$flial =$this->input->post('flial'),
+    'iban' =>$iban =$this->input->post('iban'),
+    'hesabno' =>$hesabno =$this->input->post('hesabno')
+   );
+ $result =$this->dtbs->editModel($data,$id,'Id','bank');
+
+ if ($result) {
+   $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+              Əlavə Etdiniz.
+            </div>');
+            redirect('manage/bankLists');
+ }else {
+   $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+         Əlavə Olunmadı.
+            </div>');
+  redirect('manage/bankLists');
+  }
+ }
+}
+
+public function bankDelete($id,$where,$from)
+{
+  $run =$this->session->userdata('delete');
+  if ($run) {
+    $yol = bankImg($id);
+    $yol2 =bankTmb($id);
+    $yol3 =bankMini($id);
+    unlink($yol);
+    unlink($yol1);
+    unlink($yol2);
+    $delete =$this->dtbs->deleteModel($id,$where,$from);
+    if ($delete) {
+      $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                 <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+                 Sildiniz
+               </div>');
+               redirect('manage/bankLists');
+    }else {
+      $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                 <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+            Sile Bilmediniiz
+               </div>');
+     redirect('manage/bankLists');
+    }
+  }else{
+    $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+               <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+          Silmək işlərini etmək üçün <br>Silmə funksiyasi açmalısınız...!!!
+             </div>');
+   redirect('manage/bankLists');
+
+  }
+}
 }
 ?>
