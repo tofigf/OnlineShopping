@@ -754,5 +754,48 @@ public function bankDelete($id,$where,$from)
 
   }
 }
+
+//Bank end
+//PrivACY sTART  view melumatlari gondermek
+public function secretContract()
+{
+  $result = $this->dtbs->listsModel('privacy');
+  $data['info'] = $result;
+  $this->load->view('back/privacy/main',$data);
+}
+
+//Gizlilik Edit Get:
+public function privacyEdit($id)
+{
+  $result=$this->dtbs->checkModel($id,'privacy');
+  $data['info'] = $result;
+  $this->load->view('back/privacy/edit/main',$data);
+}
+#Gizlilik Edit Post:
+public function privacyEditing()
+{
+  $data =array(
+    'Id' =>$id =$this->input->post('Id'),
+    'title' =>$title=$this->input->post('title'),
+    'sef' =>seflink($title),
+    'description' =>$description =$this->input->post('description')
+  );
+$result =$this->dtbs->editModel($data,$id,'Id','privacy');
+if ($result) {
+  $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+             <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+          Deyisdirildi
+           </div>');
+           redirect('manage/secretContract');
+}else {
+  $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+             <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+      Deyisilik alinmadi
+           </div>');
+ redirect('manage/secretContract');
+}
+}
 }
 ?>
