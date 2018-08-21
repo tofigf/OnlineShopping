@@ -1,4 +1,4 @@
-socialmediawarrantyqu/sale
+smediabank
 <!DOCTYPE html>
 <html>
 
@@ -8,8 +8,8 @@ socialmediawarrantyqu/sale
 <?php $this->load->view('back/include/header'); ?>
 <?php $this->load->view('back/include/sidebar'); ?>
   <div class="content-wrapper">
-<?php $this->load->view('back/warranty/breadcrumb'); ?>
-  <?php $this->load->view('back/warranty/main_content'); ?>
+<?php $this->load->view('back/smedia/add/breadcrumb'); ?>
+  <?php $this->load->view('back/smedia/add/main_content'); ?>
   </div>
   <?php $this->load->view('back/include/footer'); ?>
 </div>

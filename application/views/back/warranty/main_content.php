@@ -19,7 +19,6 @@
                     <th>S No</th>
                  <th>Başlıq</th>
                  <th>Açıqlama</th>
-                 <th>Status</th>
                </tr>
                </thead>
                <tbody>

@@ -142,7 +142,7 @@
                             <li><a href="<?php echo base_url('manage/salescontract') ?>"><i class="fa fa-circle-o"></i>Satış Sözdələşmə</a></li>
                             <li><a href="<?php echo base_url('manage/frequentlyaskedquestions') ?>"><i class="fa fa-circle-o"></i>Ən çox verilən suallar</a></li>
                             <li><a href="<?php echo base_url('manage/Warrantyreturn') ?>"><i class="fa fa-circle-o"></i>Zəmanət və qaytarılma</a></li>
-                            <li><a href="<?php echo base_url('manage/socialmedia') ?>"><i class="fa fa-circle-o"></i>Sosial Media</a></li>
+                            <li><a href="<?php echo base_url('manage/smedia') ?>"><i class="fa fa-circle-o"></i>Sosial Media</a></li>
 
 
                           </ul>
