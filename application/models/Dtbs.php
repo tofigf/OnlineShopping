@@ -21,7 +21,7 @@ function timeupdate($Id,$data=array()){
     ->order_by('Id','desc')->get()->result_array();
     return $result;
 }
-
+//editde lazim olur xanalari doldurmaq
  function checkModel($id,$from)
 {
     $result =$this->db->select('*')->from($from)
