@@ -954,5 +954,80 @@ public function questionSet()
      $status =($this->input->post('status')== "true") ? 1 : 0;
      $this->db->where('Id',$id)->update('question',array('status'=>$status));
 }
+
+//question end
+#Warranty Strart
+public function warrantyReturn()
+{
+  $result =$this->dtbs->listsModel('warranty');
+  $data['info'] = $result;
+   $this->load->view('back/warranty/main',$data);
+}
+
+//Get:
+public function warrantyAdd()
+{
+     $this->load->view('back/warranty/add/main');
+}
+
+//Post:
+public function warrantyAdding()
+{
+  $data =array(
+'title' =>$title=$this->input->post('title'),
+'sef'   =>seflink($title),
+'description' =>$description = $this->input->post('description')
+
+  );
+  $result =$this->dtbs->addModel('warranty',$data);
+  if ($result) {
+    $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+               <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+            Əlavə Etdiniz
+             </div>');
+             redirect('manage/warrantyReturn');
+  }else {
+    $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+               <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+      Əlavə etmək alinmadi
+             </div>');
+   redirect('manage/warrantyReturn');
+  }
+}
+//eDIT pOST:
+public function warrantyEdit($id)
+{
+  $result =$this->dtbs->checkModel($id,'warranty');
+  $data['info'] = $result;
+  $this->load->view('back/warranty/edit/main',$data);
+}
+//Post:
+public function warrantyEditing()
+{
+  $data =array(
+    'Id' =>$id =$this->input->post('Id'),
+    'title' =>$title=$this->input->post('title'),
+    'sef' =>seflink($title),
+    'description' =>$description =$this->input->post('description')
+  );
+ $result =$this->dtbs->editModel($data,$id,'Id','warranty');
+if ($result) {
+  $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+             <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+          Deyisdirildi
+           </div>');
+           redirect('manage/warrantyReturn');
+}else {
+  $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+             <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+      Deyisilik alinmadi
+           </div>');
+ redirect('manage/warrantyReturn');
+}
+}
 }
 ?>
