@@ -1141,5 +1141,643 @@ public function smediaSet()
   $status =($this->input->post('status')== "true") ? 1 : 0;
   $this->db->where('Id',$id)->update('smedia',array('status'=>$status));
 }
+
+//Smedia end:
+//Products Start:
+public function products()
+{
+    $result =$this->dtbs->listsModel('products');
+    $data['info'] =$result;
+    $this->load->view('back/products/main',$data);
+}
+public function productAdd()
+{
+    $this->load->view('back/products/add/main');
+}
+
+public function productAdding()
+{
+  $config['upload_path']  = FCPATH.'assets/front/image/products';
+  $config['allowed_types'] = 'gif|jpg|jpeg|png';
+  $config['encrypt_name'] =TRUE;
+  $this->load->library('upload', $config);
+  $this->upload->do_upload('img');
+        $img =$this->upload->data();
+        $imgPath =$img['file_name'];
+        $imgSave ='assets/front/image/products/'.$imgPath.'';
+        $imgtmb ='assets/front/image/products/tmb1/'.$imgPath.'';
+        $imgmini ='assets/front/image/products/mini1/'.$imgPath.'';
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = 'assets/front/image/products/'.$imgPath.'';
+        $config['new_image'] = 'assets/front/image/products/tmb1/'.$imgPath.'';
+        $config['create_thumb'] = false;
+        $config['maintain_ratio'] = false;
+        $config['quality'] ='60%';
+        $config['width'] ='420';
+        $config['height'] ='213';
+        $this->load->library('image_lib',$config);
+        $this->image_lib->initialize($config);
+        $this->image_lib->resize();
+        $this->image_lib->clear();
+                      ////////////////////////////
+        $config1['upload_path']  = FCPATH.'assets/front/image/products';
+        $config1['allowed_types'] = 'gif|jpg|jpeg|png';
+        $config1['encrypt_name'] =TRUE;
+              $config1['image_library'] = 'gd2';
+              $config1['source_image'] = 'assets/front/image/products/'.$imgPath.'';
+              $config1['new_image'] = 'assets/front/image/products/mini1/'.$imgPath.'';
+              $config1['create_thumb'] = false;
+              $config1['maintain_ratio'] = false;
+              $config1['quality'] ='60%';
+              $config1['width'] ='76';
+              $config1['height'] ='55';
+
+              $this->load->library('image_lib',$config1);
+              $this->image_lib->initialize($config1);
+              $this->image_lib->resize();
+              $this->image_lib->clear();
+              //Img end
+///////////////////////////
+////////////////////////////
+$config2['upload_path']  = FCPATH.'assets/front/image/products';
+$config2['allowed_types'] = 'gif|jpg|jpeg|png';
+$config2['encrypt_name'] =TRUE;
+$this->load->library('upload', $config2);
+$this->upload->do_upload('img2');
+      $img2 =$this->upload->data();
+      $imgPath2=$img2['file_name'];
+      $imgSave2 ='assets/front/image/products/'.$imgPath2.'';
+      $imgtmb2 ='assets/front/image/products/tmb2/'.$imgPath2.'';
+      $imgmini2 ='assets/front/image/products/mini2/'.$imgPath2.'';
+      $config2['image_library'] = 'gd2';
+      $config2['source_image'] = 'assets/front/image/products/'.$imgPath2.'';
+      $config2['new_image'] = 'assets/front/image/products/tmb2/'.$imgPath2.'';
+      $config2['create_thumb'] = false;
+      $config2['maintain_ratio'] = false;
+      $config2['quality'] ='60%';
+      $config2['width'] ='420';
+      $config2['height'] ='213';
+      $this->load->library('image_lib',$config2);
+      $this->image_lib->initialize($config2);
+      $this->image_lib->resize();
+      $this->image_lib->clear();
+                       ///////////////////
+        $config3['upload_path']  = FCPATH.'assets/front/image/products';
+        $config3['allowed_types'] = 'gif|jpg|jpeg|png';
+        $config3['encrypt_name'] =TRUE;
+              $config3['image_library'] = 'gd2';
+              $config3['source_image'] = 'assets/front/image/products/'.$imgPath2.'';
+              $config3['new_image'] = 'assets/front/image/products/mini2/'.$imgPath2.'';
+              $config3['create_thumb'] = false;
+              $config3['maintain_ratio'] = false;
+              $config3['quality'] ='60%';
+              $config3['width'] ='76';
+              $config3['height'] ='55';
+              $this->load->library('image_lib',$config3);
+              $this->image_lib->initialize($config3);
+              $this->image_lib->resize();
+              $this->image_lib->clear();
+///img2 End:
+////////////////
+///////////////
+$config4['upload_path']  = FCPATH.'assets/front/image/products';
+$config4['allowed_types'] = 'gif|jpg|jpeg|png';
+$config4['encrypt_name'] =TRUE;
+$this->load->library('upload', $config4);
+$this->upload->do_upload('img3');
+      $img3 =$this->upload->data();
+      $imgPath3=$img3['file_name'];
+      $imgSave3 ='assets/front/image/products/'.$imgPath3.'';
+      $imgtmb3 ='assets/front/image/products/tmb3/'.$imgPath3.'';
+      $imgmini3 ='assets/front/image/products/mini3/'.$imgPath3.'';
+      $config4['image_library'] = 'gd2';
+      $config4['source_image'] = 'assets/front/image/products/'.$imgPath3.'';
+      $config4['new_image'] = 'assets/front/image/products/tmb3/'.$imgPath3.'';
+      $config4['create_thumb'] = false;
+      $config4['maintain_ratio'] = false;
+      $config4['quality'] ='60%';
+      $config4['width'] ='420';
+      $config4['height'] ='213';
+      $this->load->library('image_lib',$config4);
+      $this->image_lib->initialize($config4);
+      $this->image_lib->resize();
+      $this->image_lib->clear();
+                //////////////
+                $config5['upload_path']  = FCPATH.'assets/front/image/products';
+                $config5['allowed_types'] = 'gif|jpg|jpeg|png';
+                $config5['encrypt_name'] =TRUE;
+                      $config5['image_library'] = 'gd2';
+                      $config5['source_image'] = 'assets/front/image/products/'.$imgPath3.'';
+                      $config5['new_image'] = 'assets/front/image/products/mini3/'.$imgPath3.'';
+                      $config5['create_thumb'] = false;
+                      $config5['maintain_ratio'] = false;
+                      $config5['quality'] ='60%';
+                      $config5['width'] ='76';
+                      $config5['height'] ='55';
+                      $this->load->library('image_lib',$config5);
+                      $this->image_lib->initialize($config5);
+                      $this->image_lib->resize();
+                      $this->image_lib->clear();
+///////////// img 3 End:
+////////////////////////
+///////////////////////
+$config6['upload_path']  = FCPATH.'assets/front/image/products';
+$config6['allowed_types'] = 'gif|jpg|jpeg|png';
+$config6['encrypt_name'] =TRUE;
+$this->load->library('upload', $config6);
+$this->upload->do_upload('img4');
+      $img4 =$this->upload->data();
+      $imgPath4 = $img4['file_name'];
+      $imgSave4 ='assets/front/image/products/'.$imgPath4.'';
+      $imgtmb4 ='assets/front/image/products/tmb4/'.$imgPath4.'';
+      $imgmini4 ='assets/front/image/products/mini4/'.$imgPath4.'';
+      $config6['image_library'] = 'gd2';
+      $config6['source_image'] = 'assets/front/image/products/'.$imgPath4.'';
+      $config6['new_image'] = 'assets/front/image/products/tmb4/'.$imgPath4.'';
+      $config6['create_thumb'] = false;
+      $config6['maintain_ratio'] = false;
+      $config6['quality'] ='60%';
+      $config6['width'] ='420';
+      $config6['height'] ='213';
+      $this->load->library('image_lib',$config6);
+      $this->image_lib->initialize($config6);
+      $this->image_lib->resize();
+      $this->image_lib->clear();
+//////////////////
+$config7['upload_path']  = FCPATH.'assets/front/image/products';
+$config7['allowed_types'] = 'gif|jpg|jpeg|png';
+$config7['encrypt_name'] =TRUE;
+      $config7['image_library'] = 'gd2';
+      $config7['source_image'] = 'assets/front/image/products/'.$imgPath4.'';
+      $config7['new_image'] = 'assets/front/image/products/mini4/'.$imgPath4.'';
+      $config7['create_thumb'] = false;
+      $config7['maintain_ratio'] = false;
+      $config7['quality'] ='60%';
+      $config7['width'] ='76';
+      $config7['height'] ='55';
+      $this->load->library('image_lib',$config7);
+      $this->image_lib->initialize($config7);
+      $this->image_lib->resize();
+      $this->image_lib->clear();
+      ///Img 4 End:
+      ////////////////
+      ///////////////////
+
+      $data =array(
+        'title' =>$title = $this->input->post('title'),
+        'sef'   =>seflink($title),
+        'catId' =>$catId =$this->input->post('catId'),
+        'price' =>$price =$this->input->post('price'),
+        'date' =>$date =$this->input->post('date'),
+        'status' =>$status =$this->input->post('status'),
+        'description' =>$description =$this->input->post('description'),
+        'status' =>1,
+        'info' =>$info = $this->input->post('info'),
+        'img'  => $imgSave,
+        'tmb'  =>$imgtmb,
+        'mini'  =>$imgmini,
+        'img2'  => $imgSave2,
+        'tmb2'  =>$imgtmb2,
+        'mini2'  =>$imgmini2,
+        'img3'  => $imgSave3,
+        'tmb3'  =>$imgtmb3,
+        'mini3'  =>$imgmini3,
+        'img4'  => $imgSave4,
+        'tmb4'  =>$imgtmb4,
+        'mini4'  =>$imgmini4,
+      );
+      $result =$this->dtbs->addModel('products',$data);
+      if ($result) {
+        $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                   <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+                   Əlavə Etdiniz.
+                 </div>');
+                 redirect('manage/products');
+      }else {
+        $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                   <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+              Əlavə Olunmadı.
+                 </div>');
+       redirect('manage/products');
+      }
+
+}
+
+ public function productEdit($id)
+ {
+     $result = $this->dtbs->checkModel($id,'products');
+     $data['info'] =$result;
+     $this->load->view('back/products/edit/main',$data);
+
+ }
+public function productEditing()
+{
+    if (strlen($_FILES['img']['name']) > 0) {
+      $config['upload_path']  = FCPATH.'assets/front/image/products';
+      $config['allowed_types'] = 'gif|jpg|jpeg|png';
+      $config['encrypt_name'] =TRUE;
+      $this->load->library('upload', $config);
+      $this->upload->do_upload('img');
+            $img =$this->upload->data();
+            $imgPath =$img['file_name'];
+            $imgSave ='assets/front/image/products/'.$imgPath.'';
+            $imgtmb ='assets/front/image/products/tmb1/'.$imgPath.'';
+            $imgmini ='assets/front/image/products/mini1/'.$imgPath.'';
+            $config['image_library'] = 'gd2';
+            $config['source_image'] = 'assets/front/image/products/'.$imgPath.'';
+            $config['new_image'] = 'assets/front/image/products/tmb1/'.$imgPath.'';
+            $config['create_thumb'] = false;
+            $config['maintain_ratio'] = false;
+            $config['quality'] ='60%';
+            $config['width'] ='420';
+            $config['height'] ='213';
+            $this->load->library('image_lib',$config);
+            $this->image_lib->initialize($config);
+            $this->image_lib->resize();
+            $this->image_lib->clear();
+                          ////////////////////////////
+            $config1['upload_path']  = FCPATH.'assets/front/image/products';
+            $config1['allowed_types'] = 'gif|jpg|jpeg|png';
+            $config1['encrypt_name'] =TRUE;
+                  $config1['image_library'] = 'gd2';
+                  $config1['source_image'] = 'assets/front/image/products/'.$imgPath.'';
+                  $config1['new_image'] = 'assets/front/image/products/mini1/'.$imgPath.'';
+                  $config1['create_thumb'] = false;
+                  $config1['maintain_ratio'] = false;
+                  $config1['quality'] ='60%';
+                  $config1['width'] ='76';
+                  $config1['height'] ='55';
+
+                  $this->load->library('image_lib',$config1);
+                  $this->image_lib->initialize($config1);
+                  $this->image_lib->resize();
+                  $this->image_lib->clear();
+                  $data =array(
+                    'Id' => $id = $this->input->post('Id'),
+                    'status' => $status = $this->input->post('status'),
+                    'title' =>$title = $this->input->post('title'),
+                    'sef'   =>seflink($title),
+                    'catId' =>$catId =$this->input->post('catId'),
+                    'price' =>$price =$this->input->post('price'),
+                    'date' =>$date =$this->input->post('date'),
+                    'status' =>$status =$this->input->post('status'),
+                    'description' =>$description =$this->input->post('description'),
+                    'status' =>1,
+                    'info' =>$info = $this->input->post('info'),
+                    'img'  => $imgSave,
+                    'tmb'  =>$imgtmb,
+                    'mini'  =>$imgmini
+                  );
+                  $way =productImg($id);
+                  $way2 =productTmb($id);
+                  $way3 =productMini($id);
+                  unlink($way);
+                  unlink($way2);
+                  unlink($way3);
+                  $result =$this->dtbs->editModel($data,$id,'Id','products');
+                  if ($result) {
+                    $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                               <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+                              Dəyişilik Etdiniz.
+                             </div>');
+                             redirect('manage/products');
+                  }else {
+                    $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                               <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+                          Dəyişilik Olunmadı.
+                             </div>');
+                   redirect('manage/products');
+                  }
+    }else if(strlen($_FILES['img2']['name']) >0) {
+      $config2['upload_path']  = FCPATH.'assets/front/image/products';
+      $config2['allowed_types'] = 'gif|jpg|jpeg|png';
+      $config2['encrypt_name'] =TRUE;
+      $this->load->library('upload', $config2);
+      $this->upload->do_upload('img2');
+            $img2 =$this->upload->data();
+            $imgPath2=$img2['file_name'];
+            $imgSave2 ='assets/front/image/products/'.$imgPath2.'';
+            $imgtmb2 ='assets/front/image/products/tmb2/'.$imgPath2.'';
+            $imgmini2 ='assets/front/image/products/mini2/'.$imgPath2.'';
+            $config2['image_library'] = 'gd2';
+            $config2['source_image'] = 'assets/front/image/products/'.$imgPath2.'';
+            $config2['new_image'] = 'assets/front/image/products/tmb2/'.$imgPath2.'';
+            $config2['create_thumb'] = false;
+            $config2['maintain_ratio'] = false;
+            $config2['quality'] ='60%';
+            $config2['width'] ='420';
+            $config2['height'] ='213';
+            $this->load->library('image_lib',$config2);
+            $this->image_lib->initialize($config2);
+            $this->image_lib->resize();
+            $this->image_lib->clear();
+                             ///////////////////
+              $config3['upload_path']  = FCPATH.'assets/front/image/products';
+              $config3['allowed_types'] = 'gif|jpg|jpeg|png';
+              $config3['encrypt_name'] =TRUE;
+                    $config3['image_library'] = 'gd2';
+                    $config3['source_image'] = 'assets/front/image/products/'.$imgPath2.'';
+                    $config3['new_image'] = 'assets/front/image/products/mini2/'.$imgPath2.'';
+                    $config3['create_thumb'] = false;
+                    $config3['maintain_ratio'] = false;
+                    $config3['quality'] ='60%';
+                    $config3['width'] ='76';
+                    $config3['height'] ='55';
+                    $this->load->library('image_lib',$config3);
+                    $this->image_lib->initialize($config3);
+                    $this->image_lib->resize();
+                    $this->image_lib->clear();
+                    $data =array(
+                      'Id' => $id = $this->input->post('Id'),
+                      'status' => $status = $this->input->post('status'),
+                      'title' =>$title = $this->input->post('title'),
+                      'sef'   =>seflink($title),
+                      'catId' =>$catId =$this->input->post('catId'),
+                      'price' =>$price =$this->input->post('price'),
+                      'date' =>$date =$this->input->post('date'),
+                      'status' =>$status =$this->input->post('status'),
+                      'description' =>$description =$this->input->post('description'),
+                      'status' =>1,
+                      'info' =>$info = $this->input->post('info'),
+                      'img2'  => $imgSave2,
+                      'tmb2'  =>$imgtmb2,
+                      'mini2'  =>$imgmini2
+                    );
+                    $way4 =productImg2($id);
+                    $way5 =productTmb2($id);
+                    $way6 =productMini2($id);
+                    unlink($way4);
+                    unlink($way5);
+                    unlink($way6);
+                    $result =$this->dtbs->editModel($data,$id,'Id','products');
+                    if ($result) {
+                      $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                 <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+                                Dəyişilik Etdiniz.
+                               </div>');
+                               redirect('manage/products');
+                    }else {
+                      $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                 <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+                            Dəyişilik Olunmadı.
+                               </div>');
+                     redirect('manage/products');
+                    }
+    }else if(strlen($_FILES['img3']['name']) >0){
+      $config4['upload_path']  = FCPATH.'assets/front/image/products';
+      $config4['allowed_types'] = 'gif|jpg|jpeg|png';
+      $config4['encrypt_name'] =TRUE;
+      $this->load->library('upload', $config4);
+      $this->upload->do_upload('img3');
+            $img3 =$this->upload->data();
+            $imgPath3=$img3['file_name'];
+            $imgSave3 ='assets/front/image/products/'.$imgPath3.'';
+            $imgtmb3 ='assets/front/image/products/tmb3/'.$imgPath3.'';
+            $imgmini3 ='assets/front/image/products/mini3/'.$imgPath3.'';
+            $config4['image_library'] = 'gd2';
+            $config4['source_image'] = 'assets/front/image/products/'.$imgPath3.'';
+            $config4['new_image'] = 'assets/front/image/products/tmb3/'.$imgPath3.'';
+            $config4['create_thumb'] = false;
+            $config4['maintain_ratio'] = false;
+            $config4['quality'] ='60%';
+            $config4['width'] ='420';
+            $config4['height'] ='213';
+            $this->load->library('image_lib',$config4);
+            $this->image_lib->initialize($config4);
+            $this->image_lib->resize();
+            $this->image_lib->clear();
+                      //////////////
+                      $config5['upload_path']  = FCPATH.'assets/front/image/products';
+                      $config5['allowed_types'] = 'gif|jpg|jpeg|png';
+                      $config5['encrypt_name'] =TRUE;
+                            $config5['image_library'] = 'gd2';
+                            $config5['source_image'] = 'assets/front/image/products/'.$imgPath3.'';
+                            $config5['new_image'] = 'assets/front/image/products/mini3/'.$imgPath3.'';
+                            $config5['create_thumb'] = false;
+                            $config5['maintain_ratio'] = false;
+                            $config5['quality'] ='60%';
+                            $config5['width'] ='76';
+                            $config5['height'] ='55';
+                            $this->load->library('image_lib',$config5);
+                            $this->image_lib->initialize($config5);
+                            $this->image_lib->resize();
+                            $this->image_lib->clear();
+                            $data =array(
+                              'Id' => $id = $this->input->post('Id'),
+                              'status' => $status = $this->input->post('status'),
+                              'title' =>$title = $this->input->post('title'),
+                              'sef'   =>seflink($title),
+                              'catId' =>$catId =$this->input->post('catId'),
+                              'price' =>$price =$this->input->post('price'),
+                              'date' =>$date =$this->input->post('date'),
+                              'status' =>$status =$this->input->post('status'),
+                              'description' =>$description =$this->input->post('description'),
+                              'status' =>1,
+                              'info' =>$info = $this->input->post('info'),
+                              'img3'  => $imgSave3,
+                              'tmb3'  =>$imgtmb3,
+                              'mini3'  =>$imgmini3
+                            );
+                            $way7 =productImg3($id);
+                            $way8 =productTmb3($id);
+                            $way9 =productMini3($id);
+                            unlink($way7);
+                            unlink($way8);
+                            unlink($way9);
+                            $result =$this->dtbs->editModel($data,$id,'Id','products');
+                            if ($result) {
+                              $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                         <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+                                        Dəyişilik Etdiniz.
+                                       </div>');
+                                       redirect('manage/products');
+                            }else {
+                              $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                         <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+                                    Dəyişilik Olunmadı.
+                                       </div>');
+                             redirect('manage/products');
+                            }
+    }else if(strlen($_FILES['img4']['name']) >0){
+      $config6['upload_path']  = FCPATH.'assets/front/image/products';
+      $config6['allowed_types'] = 'gif|jpg|jpeg|png';
+      $config6['encrypt_name'] =TRUE;
+      $this->load->library('upload', $config6);
+      $this->upload->do_upload('img4');
+            $img4 =$this->upload->data();
+            $imgPath4 = $img4['file_name'];
+            $imgSave4 ='assets/front/image/products/'.$imgPath4.'';
+            $imgtmb4 ='assets/front/image/products/tmb4/'.$imgPath4.'';
+            $imgmini4 ='assets/front/image/products/mini4/'.$imgPath4.'';
+            $config6['image_library'] = 'gd2';
+            $config6['source_image'] = 'assets/front/image/products/'.$imgPath4.'';
+            $config6['new_image'] = 'assets/front/image/products/tmb4/'.$imgPath4.'';
+            $config6['create_thumb'] = false;
+            $config6['maintain_ratio'] = false;
+            $config6['quality'] ='60%';
+            $config6['width'] ='420';
+            $config6['height'] ='213';
+            $this->load->library('image_lib',$config6);
+            $this->image_lib->initialize($config6);
+            $this->image_lib->resize();
+            $this->image_lib->clear();
+      //////////////////
+      $config7['upload_path']  = FCPATH.'assets/front/image/products';
+      $config7['allowed_types'] = 'gif|jpg|jpeg|png';
+      $config7['encrypt_name'] =TRUE;
+            $config7['image_library'] = 'gd2';
+            $config7['source_image'] = 'assets/front/image/products/'.$imgPath4.'';
+            $config7['new_image'] = 'assets/front/image/products/mini4/'.$imgPath4.'';
+            $config7['create_thumb'] = false;
+            $config7['maintain_ratio'] = false;
+            $config7['quality'] ='60%';
+            $config7['width'] ='76';
+            $config7['height'] ='55';
+            $this->load->library('image_lib',$config7);
+            $this->image_lib->initialize($config7);
+            $this->image_lib->resize();
+            $this->image_lib->clear();
+            $data =array(
+              'Id' => $id = $this->input->post('Id'),
+              'status' => $status = $this->input->post('status'),
+              'title' =>$title = $this->input->post('title'),
+              'sef'   =>seflink($title),
+              'catId' =>$catId =$this->input->post('catId'),
+              'price' =>$price =$this->input->post('price'),
+              'date' =>$date =$this->input->post('date'),
+              'status' =>$status =$this->input->post('status'),
+              'description' =>$description =$this->input->post('description'),
+              'status' =>1,
+              'info' =>$info = $this->input->post('info'),
+              'img4'  => $imgSave4,
+              'tmb4'  =>$imgtmb4,
+              'mini4'  =>$imgmini4
+            );
+            $way10 =productImg4($id);
+            $way11 =productTmb4($id);
+            $way12 =productMini4($id);
+            unlink($way10);
+            unlink($way11);
+            unlink($way12);
+            $result =$this->dtbs->editModel($data,$id,'Id','products');
+            if ($result) {
+              $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                         <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+                        Dəyişilik Etdiniz.
+                       </div>');
+                       redirect('manage/products');
+            }else {
+              $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                         <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+                    Dəyişilik Olunmadı.
+                       </div>');
+             redirect('manage/products');
+}
+    }else {
+      $data =array(
+        'Id' => $id = $this->input->post('Id'),
+        'status' => $status = $this->input->post('status'),
+        'title' =>$title = $this->input->post('title'),
+        'sef'   =>seflink($title),
+        'catId' =>$catId =$this->input->post('catId'),
+        'price' =>$price =$this->input->post('price'),
+        'date' =>$date =$this->input->post('date'),
+        'status' =>$status =$this->input->post('status'),
+        'description' =>$description =$this->input->post('description'),
+        'status' =>1,
+        'info' =>$info = $this->input->post('info')
+      );
+      $result =$this->dtbs->editModel($data,$id,'Id','products');
+      if ($result) {
+        $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                   <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+                  Dəyişilik Etdiniz.
+                 </div>');
+                 redirect('manage/products');
+      }else {
+        $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                   <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+              Dəyişilik Olunmadı.
+                 </div>');
+       redirect('manage/products');
+}
+    }
+}
+//Sett:
+public function productSet()
+{
+  $id =$this->input->post('Id');
+  $status =($this->input->post('status')== "true") ? 1 : 0;
+  $this->db->where('Id',$id)->update('products',array('status'=>$status));
+}
+#delete:
+public function productDelete($id,$where,$from)
+{
+    $run =$this->session->userdata('delete');
+  if ($run) {
+    $way =productImg($id);
+    $way2 =productTmb($id);
+    $way3 =productMini($id);
+    $way4 =productImg2($id);
+    $way5 =productTmb2($id);
+    $way6 =productMini2($id);
+    $way7 =productImg3($id);
+    $way8 =productTmb3($id);
+    $way9 =productMini3($id);
+    $way10 =productImg4($id);
+    $way11 =productTmb4($id);
+    $way12 =productMini4($id);
+    unlink($way);
+    unlink($way2);
+    unlink($way3);
+    unlink($way4);
+    unlink($way5);
+    unlink($way6);
+    unlink($way7);
+    unlink($way8);
+    unlink($way9);
+    unlink($way10);
+    unlink($way11);
+    unlink($way12);
+    $delete =$this->dtbs->deleteModel($id,$where,$from);
+    if ($delete) {
+      $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                 <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+                 Sildiniz
+               </div>');
+               redirect('manage/products');
+    }else {
+      $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                 <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+            Sile Bilmediniiz
+               </div>');
+     redirect('manage/products');
+    }
+  }else{
+    $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+               <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+          Silmək işlərini etmək üçün <br>Silmə funksiyasi açmalısınız...!!!
+             </div>');
+   redirect('manage/products');
+
+  }
+}
+
+
 }
 ?>

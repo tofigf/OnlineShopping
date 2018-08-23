@@ -22,4 +22,5 @@ $('.toggle_check').change(function(){
   })
   //editor textarea
   CKEDITOR.replace('editor1');
+    CKEDITOR.replace('editor2');
 });

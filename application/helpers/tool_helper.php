@@ -149,10 +149,6 @@ $ci =& get_instance();
 $result = $ci->db->select('mini')->from('bank')->where('Id',$id)->get()->row();
 return $result->mini;
 }
-
-
-
-
 function cargoDesiCheck(){
   $ci =& get_instance();
   $result =$ci->db->select('*')->from('cargo')->where('status','1')->order_by('Id','asc')
@@ -164,7 +160,97 @@ function cargoJoinTable(){
   $result =$ci->db->select('*')->from('cargo')
   ->join('cargodesi','cargodesi.cargoId =  cargo.Id','inner')
   ->order_by('cargodesi.Id','desc')->get()->result_array();
+  return $result;
+}
+function categoriCheck(){
+  $ci =& get_instance();
+  $result = $ci->db->select('*')->from('categories')->order_by('Id','asc')->get()->result_array();
 
   return $result;
+}
+function productsJoinCategories(){
+  $ci= & get_instance();
+  $result =$ci->db->select('*')->from('categories')
+  ->join('products','products.catId = categories.Id','inner')
+  ->order_by('products.Id','desc')->get()->result_array();
+  return $result;
+}
+///////////////////
+///////////////
+/////////////////
+function productImg($id)
+{
+ $ci =& get_instance();
+ $result = $ci->db->select('img')->from('products')->where('Id',$id)->get()->row();
+ return $result->img;
+}
+function productTmb($id)
+{
+$ci =& get_instance();
+$result = $ci->db->select('tmb')->from('products')->where('Id',$id)->get()->row();
+return $result->tmb;
+}
+function productMini($id)
+{
+$ci =& get_instance();
+$result = $ci->db->select('mini')->from('products')->where('Id',$id)->get()->row();
+return $result->mini;
+}
+///////////////////////////////
+function productImg2($id)
+{
+ $ci =& get_instance();
+ $result = $ci->db->select('img2')->from('products')->where('Id',$id)->get()->row();
+ return $result->img2;
+}
+function productTmb2($id)
+{
+$ci =& get_instance();
+$result = $ci->db->select('tmb2')->from('products')->where('Id',$id)->get()->row();
+return $result->tmb2;
+}
+function productMini2($id)
+{
+$ci =& get_instance();
+$result = $ci->db->select('mini2')->from('products')->where('Id',$id)->get()->row();
+return $result->mini2;
+}
+///////////////////////
+function productImg3($id)
+{
+ $ci =& get_instance();
+ $result = $ci->db->select('img3')->from('products')->where('Id',$id)->get()->row();
+ return $result->img3;
+}
+function productTmb3($id)
+{
+$ci =& get_instance();
+$result = $ci->db->select('tmb3')->from('products')->where('Id',$id)->get()->row();
+return $result->tmb3;
+}
+function productMini3($id)
+{
+$ci =& get_instance();
+$result = $ci->db->select('mini3')->from('products')->where('Id',$id)->get()->row();
+return $result->mini3;
+}
+////////////////////////////
+function productImg4($id)
+{
+ $ci =& get_instance();
+ $result = $ci->db->select('img4')->from('products')->where('Id',$id)->get()->row();
+ return $result->img4;
+}
+function productTmb4($id)
+{
+$ci =& get_instance();
+$result = $ci->db->select('tmb4')->from('products')->where('Id',$id)->get()->row();
+return $result->tmb4;
+}
+function productMini4($id)
+{
+$ci =& get_instance();
+$result = $ci->db->select('mini4')->from('products')->where('Id',$id)->get()->row();
 
+return $result->mini4;
 }
