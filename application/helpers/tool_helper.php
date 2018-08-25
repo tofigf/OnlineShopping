@@ -254,3 +254,25 @@ $result = $ci->db->select('mini4')->from('products')->where('Id',$id)->get()->ro
 
 return $result->mini4;
 }
+
+function security(){
+  $ci =& get_instance();
+  $result =$ci->db->from('security')->get()->row_array();
+  return $result;
+}
+function seller(){
+  $ci =& get_instance();
+  $result =$ci->db->from('sales')->get()->row_array();
+  return $result;
+}
+function warranty(){
+  $ci =& get_instance();
+  $result =$ci->db->from('warranty')->get()->row_array();
+  return $result;
+}
+function question(){
+  $ci =& get_instance();
+  $result =$ci->db->from('question')->where('status','1')->
+  get()->result_array();
+  return $result;
+}
