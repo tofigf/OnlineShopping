@@ -44,24 +44,24 @@
 <a href="#"><i class="fa fa-home"></i><span class="hidden-sm"></span></a>
 </li>
 <li>
-<a href="#" id="wishlist-total" title="Gizlilik Sözleşmesi"><i class="fa fa-shield"></i>
+<a href="<?php echo base_url('security'); ?>" id="wishlist-total" title="Gizlilik Sözleşmesi"><i class="fa fa-shield"></i>
 <span class="hidden-sm">Gizlilik Sözleşmesi</span></a>
 </li>
 <li>
-<a href="#" title="Satış Sözleşmesi"><i class="fa fa-bookmark"></i>
+<a href="<?php echo base_url('seller'); ?>" title="Satış Sözleşmesi"><i class="fa fa-bookmark"></i>
 <span class="hidden-sm">Satış Sözleşmesi</span></a>
 </li>
 <li>
-<a href="#" title="S.S.S"><i class="fa fa-question-circle"></i>
-<span class="hidden-sm">S.S.S</span></a>
+<a href="<?php echo base_url('question'); ?>" title="Ən çox verilən suallar"><i class="fa fa-question-circle"></i>
+<span class="hidden-sm">Ən çox verilən suallar</span></a>
 </li>
 <li>
-<a href="#" title="Garanti ve İade"><i class="fa fa-retweet"></i>
-<span class="hidden-sm">Garanti ve İade</span></a>
+<a href="<?php echo base_url('warranty'); ?>" title="Garanti ve İade"><i class="fa fa-retweet"></i>
+<span class="hidden-sm">Zəmanət və geri qaytarılma</span></a>
 </li>
 <li>
-<a href="#" title="İletişim"><i class="fa fa-envelope"></i>
-<span class="hidden-sm">İletişim</span></a>
+<a href="<?php echo base_url('contact'); ?>" title="Əlaqə"><i class="fa fa-envelope"></i>
+<span class="hidden-sm">Əlaqə</span></a>
 </li>
 </ul>
 <div class="box-cart">

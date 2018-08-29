@@ -1,4 +1,4 @@
-contact<!DOCTYPE html>
+Əlaqəcontact<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <!--[if IE 8 ]>
 <html dir="ltr" lang="en" class="ie8"><![endif]-->
@@ -10,15 +10,15 @@ contact<!DOCTYPE html>
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UDEMY | Başlık</title>
-<meta property="og:url"           content="başlık" />
+<title>UDEMY | Əlaqə</title>
+<meta property="og:url"           content="Əlaqə" />
 <meta property="og:type"          content="website" />
-<meta property="og:title"         content="UDEMY | başlık" />
+<meta property="og:title"         content="UDEMY | Əlaqə" />
 <meta property="og:description"   content="Codeigniter ile E-ticaret Eğitim Serisi" />
-<meta property="og:image"         content="logo bu alana gelecek" />
+<meta property="og:image"         content="<?php echo base_url(); ?>assets/front/image/logo.png" />
 <meta name="description" content="Codeigniter ile E-ticaret Eğitim Serisi" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link href="assets/front/image/favicon.ico" rel="icon" />
+<link href="<?php echo base_url(); ?>assets/front/image/favicon.ico" rel="icon" />
 <?php $this->load->view('front/include/style'); ?>
 </head>
 <body class="common-home">

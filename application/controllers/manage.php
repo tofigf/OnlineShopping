@@ -1778,6 +1778,54 @@ public function productDelete($id,$where,$from)
   }
 }
 
+//Mesajlar
+public function messages()
+{
+    $result =$this->dtbs->listsModel('messages');
+    $data['info'] =$result;
+    $this->load->view('back/messages/main',$data);
+}
+public function messageEdit($id)
+{
+    $result = $this->dtbs->checkModel($id,'messages');
+    if ($result) {
+      $data['info'] =$result;
+      $this->load->view('back/messages/edit/main',$data);
+      $data = array('status'=>1);
+      $this->dtbs->messajUpdate($result['Id'],$data);
+    }
 
+}
+public function messageDel($id,$where,$from)
+{
+  $run =$this->session->userdata('delete');
+  if ($run) {
+    $delete =$this->dtbs->deleteModel($id,$where,$from);
+    if ($delete) {
+      $this->session->set_flashdata('condition' , '<div class="alert alert-success alert-dismissible">
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                 <h4><i class="icon fa fa-check"></i> Tebrikler!</h4>
+                 Sildiniz
+               </div>');
+               redirect('manage/messages');
+    }else {
+      $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                 <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+            Sile Bilmediniiz
+               </div>');
+     redirect('manage/messages');
+    }
+  }else{
+    $this->session->set_flashdata('condition' , '<div class="alert alert-danger alert-dismissible">
+               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+               <h4><i class="icon fa fa-ban"></i> Xəta!</h4>
+          Silmək işlərini etmək üçün <br>Silmə funksiyasi açmalısınız...!!!
+             </div>');
+   redirect('manage/messages');
+
+  }
+
+}
 }
 ?>

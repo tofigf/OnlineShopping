@@ -45,4 +45,8 @@ function timeupdate($Id,$data=array()){
     $result = $this->db->delete($from,array($where=>$id));
     return $result;
 }
+function messajUpdate($id,$data=array()){
+  $result = $this->db->where('Id',$id)->update('messages',$data);
+  return $result;
+}
 }
